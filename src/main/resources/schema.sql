@@ -29,6 +29,7 @@ DROP TABLE IF EXISTS `profiles`;
 CREATE TABLE `profiles` (
   `profileID` int NOT NULL AUTO_INCREMENT,
   `customerID` int NOT NULL,
+  `msisdn` varchar(20) NOT NULL,
   `pinHash` varchar(100) NOT NULL,
   `dateCreated` date DEFAULT NULL,
   `dateModified` date DEFAULT NULL,
