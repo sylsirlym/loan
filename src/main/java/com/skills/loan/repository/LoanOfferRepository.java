@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface LoanOfferRepository extends JpaRepository<LoanOfferEntity, Integer> {
     List<LoanOfferEntity> findAllByProfileID(int profileID);
+    LoanOfferEntity findLoanOfferEntityByLoanOfferID(int loanOfferID);
 }

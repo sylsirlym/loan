@@ -16,5 +16,6 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("loan.configs")
 public class LoanConfigurations {
     private int successStatusCode;
+    private int failedStatusCode;
     private String successStatusMessage;
 }

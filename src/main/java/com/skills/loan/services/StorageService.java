@@ -24,11 +24,14 @@ public class StorageService {
     private final ProfilesRepository profilesRepository;
     private final LoanOfferRepository loanOfferRepository;
     public ProfilesEntity fetchProfiles(String msisdn){
-        log.info("Fetching with MSISDN:{}", msisdn);
         return profilesRepository.findProfilesEntityByMsisdn(msisdn);
     }
 
     public List<LoanOfferEntity> fetchLoanOfferByProfile(int profileID){
         return loanOfferRepository.findAllByProfileID(profileID);
+    }
+
+    public LoanOfferEntity fetchLoanOfferByID(int loanOfferID) {
+        return loanOfferRepository.findLoanOfferEntityByLoanOfferID(loanOfferID);
     }
 }

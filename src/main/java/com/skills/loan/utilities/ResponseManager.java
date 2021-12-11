@@ -23,4 +23,12 @@ public class ResponseManager {
         response.setResult(result);
         return response;
     }
+
+    public ResponseDTO failedResponse(String statusMessage,Object result){
+        var response = new ResponseDTO();
+        response.setStatusCode(loanConfigurations.getFailedStatusCode());
+        response.setStatusMessage(statusMessage);
+        response.setResult(result);
+        return response;
+    }
 }
