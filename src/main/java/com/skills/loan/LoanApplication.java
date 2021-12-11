@@ -4,7 +4,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.skills.loan.dtos.LoanDTO;
 import com.skills.loan.dtos.LoanOffer;
+import com.skills.loan.dtos.LoanRequestDTO;
+import com.skills.loan.entities.LoanEntity;
 import com.skills.loan.entities.LoanOfferEntity;
 import com.skills.loan.entities.LoanProductEntity;
 import com.skills.loan.entities.TenureEntity;
@@ -48,6 +51,23 @@ public class LoanApplication {
                     }
                 });
 
+        var loanRequestDTOLoanEntityTypeMap = modelMapper.createTypeMap(LoanRequestDTO.class, LoanEntity.class);
+        loanRequestDTOLoanEntityTypeMap.addMappings(
+                mapper -> mapper.map(LoanRequestDTO::getPrinciple, LoanEntity::setLoanPrincipal)
+        );
+
+        var loanEntityLoanDTOTypeMap = modelMapper.createTypeMap(LoanEntity.class, LoanDTO.class);
+        loanEntityLoanDTOTypeMap.addMappings(
+                new PropertyMap<LoanEntity, LoanDTO>() {
+                    @Override
+                    protected void configure() {
+                        using(ctx -> ((LoanEntity) ctx.getSource()).getLoanOfferEntity().getLoanProductEntity().getLoanProductName()
+                        ).map(source, destination.getLoanName());
+
+                        using(ctx -> ((LoanEntity) ctx.getSource()).getLoanPrincipal()
+                        ).map(source, destination.getPrincipal());
+                    }
+                });
         return modelMapper;
     }
 
@@ -56,7 +76,7 @@ public class LoanApplication {
     }
 
     private String generateInterest(String interest) {
-        return interest+" %";
+        return interest + " %";
     }
 
     @Bean

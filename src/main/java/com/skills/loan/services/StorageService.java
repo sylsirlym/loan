@@ -1,8 +1,10 @@
 package com.skills.loan.services;
 
+import com.skills.loan.entities.LoanEntity;
 import com.skills.loan.entities.LoanOfferEntity;
 import com.skills.loan.entities.ProfilesEntity;
 import com.skills.loan.repository.LoanOfferRepository;
+import com.skills.loan.repository.LoanRepository;
 import com.skills.loan.repository.ProfilesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,7 @@ import java.util.List;
 public class StorageService {
     private final ProfilesRepository profilesRepository;
     private final LoanOfferRepository loanOfferRepository;
+    private final LoanRepository loanRepository;
     public ProfilesEntity fetchProfiles(String msisdn){
         return profilesRepository.findProfilesEntityByMsisdn(msisdn);
     }
@@ -33,5 +36,9 @@ public class StorageService {
 
     public LoanOfferEntity fetchLoanOfferByID(int loanOfferID) {
         return loanOfferRepository.findLoanOfferEntityByLoanOfferID(loanOfferID);
+    }
+
+    public LoanEntity saveLoan(LoanEntity loan){
+        return loanRepository.save(loan);
     }
 }
