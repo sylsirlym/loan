@@ -1,6 +1,7 @@
 # Digital Lending
 This a digital lending application
-Fetch Offers Service
+**Fetch Offers Service**
+
 GET: http://<host>:8080/v1/loans/offer/{msisdn} - Use 254707123456
 
 # Sample Response:
@@ -28,7 +29,8 @@ GET: http://<host>:8080/v1/loans/offer/{msisdn} - Use 254707123456
 }
 ```
 
-Loan Request Service
+**Loan Request Service**
+
 POST: http://localhost:8080/v1/loans/request
 # Sample Request:
 ```json
