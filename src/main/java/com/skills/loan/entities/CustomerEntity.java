@@ -20,18 +20,17 @@ import java.util.Date;
 @Entity
 @Table(name="customers")
 @Where(clause = "active='1'")
-public class Customers {
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customerid")
     private int customerID;
+    @Column(name = "firstname")
     private String firstName;
+    @Column(name = "lastname")
     private String lastName;
+    @Column(name = "idnumber")
     private String idNumber;
     private String email;
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreated;
-    @UpdateTimestamp
-    private Timestamp dateModified;
     private int active;
 }
